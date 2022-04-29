@@ -3,19 +3,19 @@ import { createContext, useState } from "react";
 const AuthContext = createContext();
 
 const AuthProvider = AuthContext.Provider;
-
 function AuthContextProvider({ children }) {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState(null);
-
+    const [user, setUser] = useState(null);
+    
+//login function
   const authLogin = async (email, password) => {
     setLoading(true);
     await fetch("api/users/login", {
       method: "POST",
       headers: {
-        "Content-Type": "application / json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         email,
@@ -36,10 +36,10 @@ function AuthContextProvider({ children }) {
   //signup function
   const authRegister = async (username, email, password) => {
     setLoading(true);
-    await fetch("/api/users/register", {
+    await fetch("api//users/register", {
       method: "POST",
       headers: {
-        "Content-Type": "application / json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         username,
@@ -57,16 +57,23 @@ function AuthContextProvider({ children }) {
       });
     setLoading(false);
   };
+  //logout function
+  const AuthLogout = () => {
+    setSuccess(false);
+    setUser(null);
+  };
 
-  //logout
   return (
     <AuthProvider
+      AuthProvider
       value={{
         success,
-        loading,
         error,
+        loading,
+        user,
         authLogin,
         authRegister,
+        AuthLogout,
       }}
     >
       {children}

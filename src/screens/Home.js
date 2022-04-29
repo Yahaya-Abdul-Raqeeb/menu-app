@@ -1,13 +1,15 @@
-import React from "react";
+import React, {useContext} from 'react'
+import {AuthContext} from "../context/auth.Context"
+import Header from "../components/Header";
 
 function Home() {
+  const { user } = useContext(AuthContext);
+  console.log(user);
   return (
-    <div>
-      Lorem sld o kj zp otydtylfkj kkkkllipokk, ishiozcui uhvjifusemvj. iuf uvb
-      uimljgjhuirt gj jgugv bi jng fhfjvjk k lkb klkfd kv bvl
-      kfjffgm,jkl,mnhjkjgfhjk.{" "}
-    </div>
-  );
+      <section>
+      <Header/>
+      </section>
+  )
 }
 
-export default Home;
+export default Home
